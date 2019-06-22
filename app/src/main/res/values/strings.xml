@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">My Remider</string>
+    <string name="app_name">My Reminder</string>
+
+    <string name="title_main_view">Principal</string>
+    <string name="title_remainders">Recordatorios</string>
+    <string name="title_remainder_detail">Detalle del Recordatorio</string>
+    <string name="title_add_remainder">Agregar Recordatorio</string>
+
+    <string name="format_hello">Hola %s</string>
+
+    <string name="label_title">Titulo</string>
+    <string name="label_description">Descripción</string>
+    <string name="label_when">Cuando</string>
 </resources>

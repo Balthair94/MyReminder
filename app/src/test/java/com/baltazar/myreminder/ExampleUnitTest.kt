@@ -1,4 +1,4 @@
-package com.baltazar.myremider
+package com.baltazar.myreminder
 
 import org.junit.Test
 

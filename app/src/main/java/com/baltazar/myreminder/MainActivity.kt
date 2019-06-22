@@ -1,4 +1,4 @@
-package com.baltazar.myremider
+package com.baltazar.myreminder
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
