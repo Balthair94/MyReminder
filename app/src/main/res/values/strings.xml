@@ -11,4 +11,7 @@
     <string name="label_title">Titulo</string>
     <string name="label_description">Descripción</string>
     <string name="label_when">Cuando</string>
+
+    <string name="button_add">Agregar</string>
+    <string name="button_remainders">Recordatorios</string>
 </resources>
