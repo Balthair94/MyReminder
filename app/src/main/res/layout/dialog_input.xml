@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="16dp"
+              android:orientation="vertical">
+
+    <TextView
+            android:text="@string/title_provide_user_name"
+            android:textSize="24sp"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <EditText
+            android:id="@+id/edit_user_name"
+            android:textSize="16sp"
+            android:hint="@string/hint_user_name"
+            android:inputType="textCapWords"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/button_cancel"
+                android:text="@string/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlue"
+                style="?android:attr/borderlessButtonStyle"/>
+
+        <Button
+                android:id="@+id/button_save"
+                android:text="@string/button_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlue"
+                style="?android:attr/borderlessButtonStyle"/>
+    </LinearLayout>
+</LinearLayout>

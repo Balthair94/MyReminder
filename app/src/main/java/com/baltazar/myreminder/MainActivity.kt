@@ -3,21 +3,50 @@ package com.baltazar.myreminder
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import com.baltazar.myreminder.utils.SharePreferencesCoordinator
+import android.content.DialogInterface
+import android.widget.Toast
+import com.baltazar.myreminder.dialogs.InputDialog
+import com.baltazar.myreminder.dialogs.InputDialogListener
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), InputDialogListener {
 
     private var mButtonAddRemainder: Button? = null
     private var mButtonOpenRemainders: Button? = null
     private var mTextGreetings: TextView? = null
     private var mToolbar: Toolbar? = null
 
+    private var mSharePreferences: SharePreferencesCoordinator? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupWidget()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mTextGreetings?.text =
+            String.format(
+                resources.getString(R.string.format_hello),
+                mSharePreferences?.getUserName() ?: "Null"
+            )
+    }
+
+    override fun onSaveUserName(newUserName: String) {
+        if(newUserName.isBlank()) {
+            Toast.makeText(this, resources.getString(R.string.error_no_name), Toast.LENGTH_SHORT).show()
+        } else {
+            mSharePreferences?.saveUserName(newUserName)
+            mTextGreetings?.text = String.format(resources.getString(R.string.format_hello), newUserName)
+        }
     }
 
     private fun setupWidget() {
@@ -30,6 +59,14 @@ class MainActivity : AppCompatActivity() {
             it.setTitleTextColor(Color.WHITE)
             setSupportActionBar(it)
             supportActionBar?.setTitle(resources.getString(R.string.app_name))
+        }
+
+        mSharePreferences = SharePreferencesCoordinator(this)
+
+        mTextGreetings?.setOnClickListener {
+            val dialog = InputDialog.newInstance(mSharePreferences?.getUserName() ?: "Null")
+            dialog.setListener(this)
+            dialog.show(supportFragmentManager, "input")
         }
     }
 }

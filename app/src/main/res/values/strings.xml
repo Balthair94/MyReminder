@@ -5,6 +5,7 @@
     <string name="title_remainders">Recordatorios</string>
     <string name="title_remainder_detail">Detalle del Recordatorio</string>
     <string name="title_add_remainder">Agregar Recordatorio</string>
+    <string name="title_provide_user_name">Proporciona tu nombre</string>
 
     <string name="format_hello">Hola %s</string>
 
@@ -12,6 +13,12 @@
     <string name="label_description">Descripción</string>
     <string name="label_when">Cuando</string>
 
+    <string name="hint_user_name">Nombre de usuario</string>
+
     <string name="button_add">Agregar</string>
     <string name="button_remainders">Recordatorios</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_cancel">Cancelar</string>
+
+    <string name="error_no_name">Proporcione un nombre de usuario</string>
 </resources>
