@@ -30,7 +30,7 @@ class AddRemainderActivity: AppCompatActivity(), AddRemainderContract.View {
 
         setupWidget()
 
-        mPresenter = AddRemainderPresenter()
+        mPresenter = AddRemainderPresenter(this)
         mPresenter?.onAttach(this)
     }
 

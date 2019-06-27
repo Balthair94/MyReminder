@@ -19,10 +19,12 @@ abstract class AppDataBase: RoomDatabase() {
     companion object {
         var INSTANCE: AppDataBase? = null
 
-        fun init(context: Context) {
+        fun getAppDataBase(context: Context): AppDataBase? {
             synchronized(AppDataBase::class) {
                 INSTANCE = Room.databaseBuilder(context.applicationContext, AppDataBase::class.java, "MyRemainderDB").build()
             }
+
+            return INSTANCE
         }
 
         fun destroyDataBaseInstance() {
