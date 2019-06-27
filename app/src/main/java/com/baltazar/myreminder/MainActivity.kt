@@ -11,7 +11,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import com.baltazar.myreminder.utils.SharePreferencesCoordinator
 import android.content.DialogInterface
+import android.content.Intent
 import android.widget.Toast
+import com.baltazar.myreminder.addRemainder.AddRemainderActivity
 import com.baltazar.myreminder.dialogs.InputDialog
 import com.baltazar.myreminder.dialogs.InputDialogListener
 
@@ -67,6 +69,11 @@ class MainActivity : AppCompatActivity(), InputDialogListener {
             val dialog = InputDialog.newInstance(mSharePreferences?.getUserName() ?: "Null")
             dialog.setListener(this)
             dialog.show(supportFragmentManager, "input")
+        }
+
+        mButtonAddRemainder?.setOnClickListener {
+            val intent = Intent(this, AddRemainderActivity::class.java)
+            startActivity(intent)
         }
     }
 }

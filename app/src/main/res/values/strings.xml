@@ -14,6 +14,10 @@
     <string name="label_when">Cuando</string>
 
     <string name="hint_user_name">Nombre de usuario</string>
+    <string name="hint_remainder_title">Titulo</string>
+    <string name="hint_remainder_description">Descripción</string>
+    <string name="hint_remainder_day">Dia</string>
+    <string name="hint_remainder_hour">Hora</string>
 
     <string name="button_add">Agregar</string>
     <string name="button_remainders">Recordatorios</string>
