@@ -1,7 +1,5 @@
 package com.baltazar.myreminder.addRemainder
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,29 +7,31 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.baltazar.myreminder.R
-import java.util.Calendar
 
 /**
  * @author Baltazar Rodriguez
  * @since v
  */
-class AddRemainderActivity: AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+class AddRemainderActivity: AppCompatActivity(), AddRemainderContract.View {
 
     private var mEditRemainderTitle: EditText? = null
     private var mEditRemainderDescription: EditText? = null
-    private var mTextDay: TextView? = null
-    private var mTextHour: TextView? = null
 
     private var mButtonSave: Button? = null
     private var mButtonCancel: Button? = null
 
     private var mToolbar: Toolbar? = null
 
+    private var mPresenter: AddRemainderPresenter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_remainder)
 
         setupWidget()
+
+        mPresenter = AddRemainderPresenter()
+        mPresenter?.onAttach(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -41,17 +41,18 @@ class AddRemainderActivity: AppCompatActivity(), DatePickerDialog.OnDateSetListe
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+    override fun onRemainderAdded() {
+        Toast.makeText(this, "Recordatorio agregado", Toast.LENGTH_SHORT).show()
+        finish()
     }
 
-    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+    override fun onShowError(error: String) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
     private fun setupWidget() {
         mEditRemainderTitle = findViewById(R.id.edit_remainder_title)
         mEditRemainderDescription = findViewById(R.id.edit_remainder_description)
-        mTextDay = findViewById(R.id.text_remainder_day)
-        mTextHour = findViewById(R.id.text_remainder_hour)
 
         mButtonSave = findViewById(R.id.button_save)
         mButtonCancel = findViewById(R.id.button_cancel)
@@ -72,25 +73,13 @@ class AddRemainderActivity: AppCompatActivity(), DatePickerDialog.OnDateSetListe
 
         mButtonCancel?.setOnClickListener { finish() }
 
-        mTextDay?.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val dialog = DatePickerDialog(
-                this,
-                this,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH))
-            dialog.show()
+        mButtonSave?.setOnClickListener {
+            mPresenter?.onAddRemainder(mEditRemainderTitle?.text.toString(), mEditRemainderDescription?.text.toString())
         }
+    }
 
-        mTextHour?.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val timePicker = TimePickerDialog(
-                this,
-                this,
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE), true)
-            timePicker.show()
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter?.onDestroy()
     }
 }
