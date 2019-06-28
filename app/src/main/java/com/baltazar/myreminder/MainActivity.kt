@@ -14,8 +14,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.widget.Toast
 import com.baltazar.myreminder.addRemainder.AddRemainderActivity
+import com.baltazar.myreminder.database.AppDataBase
 import com.baltazar.myreminder.dialogs.InputDialog
 import com.baltazar.myreminder.dialogs.InputDialogListener
+import com.baltazar.myreminder.remainderList.RemainderListActivity
 
 
 class MainActivity : AppCompatActivity(), InputDialogListener {
@@ -51,6 +53,11 @@ class MainActivity : AppCompatActivity(), InputDialogListener {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        AppDataBase.destroyDataBaseInstance()
+    }
+
     private fun setupWidget() {
         mButtonAddRemainder = findViewById(R.id.button_add_remainder)
         mButtonOpenRemainders = findViewById(R.id.button_open_remainders)
@@ -73,6 +80,11 @@ class MainActivity : AppCompatActivity(), InputDialogListener {
 
         mButtonAddRemainder?.setOnClickListener {
             val intent = Intent(this, AddRemainderActivity::class.java)
+            startActivity(intent)
+        }
+
+        mButtonOpenRemainders?.setOnClickListener {
+            val intent = Intent(this, RemainderListActivity::class.java)
             startActivity(intent)
         }
     }

@@ -25,4 +25,6 @@
     <string name="button_cancel">Cancelar</string>
 
     <string name="error_no_name">Proporcione un nombre de usuario</string>
+
+    <string name="message_empty_remainder_list">No hay elementos guardados en la Base de datos</string>
 </resources>

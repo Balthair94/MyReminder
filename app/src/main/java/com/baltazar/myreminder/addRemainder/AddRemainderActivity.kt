@@ -65,7 +65,7 @@ class AddRemainderActivity: AppCompatActivity(), AddRemainderContract.View {
             setSupportActionBar(toolbar)
 
             supportActionBar?.apply {
-                title = resources.getString(R.string.app_name)
+                title = resources.getString(R.string.title_add_remainder)
                 setDisplayHomeAsUpEnabled(true)
                 setDisplayShowHomeEnabled(false)
             }
