@@ -8,6 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.baltazar.myreminder.R
 import com.baltazar.myreminder.database.RemainderEntity
@@ -23,6 +25,8 @@ class RemainderListActivity: AppCompatActivity(), RemainderListContract.View {
     private var mToolbar: Toolbar? = null
 
     private var mPresenter: RemainderListPresenter? = null
+
+    private lateinit var mRecyclerViewAdapter: RemainderListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +51,7 @@ class RemainderListActivity: AppCompatActivity(), RemainderListContract.View {
     override fun showRemainders(remainders: List<RemainderEntity>) {
         mTextEmptyMessage?.visibility = View.GONE
         mRecyclerView?.visibility = View.VISIBLE
-        Toast.makeText(this, "Recordatorios: ${remainders.size}", Toast.LENGTH_SHORT).show()
+        mRecyclerViewAdapter.updateRemaindersList(remainders)
     }
 
     override fun showRemaindersEmpty() {
@@ -63,8 +67,9 @@ class RemainderListActivity: AppCompatActivity(), RemainderListContract.View {
         mRecyclerView = findViewById(R.id.recycler_view)
         mTextEmptyMessage = findViewById(R.id.text_empty_list)
         mToolbar = findViewById(R.id.toolbar)
-
         mToolbar?.setNavigationIcon(R.drawable.ic_arrow_back)
+
+        mRecyclerViewAdapter = RemainderListAdapter(arrayListOf())
 
         mToolbar?.let { toolbar ->
             toolbar.setTitleTextColor(Color.WHITE)
@@ -75,6 +80,12 @@ class RemainderListActivity: AppCompatActivity(), RemainderListContract.View {
                 setDisplayHomeAsUpEnabled(true)
                 setDisplayShowHomeEnabled(false)
             }
+        }
+
+        mRecyclerView?.apply {
+            layoutManager = LinearLayoutManager(this@RemainderListActivity)
+            itemAnimator = DefaultItemAnimator()
+            adapter = mRecyclerViewAdapter
         }
     }
 }

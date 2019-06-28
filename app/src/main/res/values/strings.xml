@@ -27,4 +27,7 @@
     <string name="error_no_name">Proporcione un nombre de usuario</string>
 
     <string name="message_empty_remainder_list">No hay elementos guardados en la Base de datos</string>
+
+    <string name="item_default_remainder">My Remainder</string>
+    <string name="item_default_remainder_date">Remainder date</string>
 </resources>
