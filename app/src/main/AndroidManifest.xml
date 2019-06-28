@@ -26,5 +26,9 @@
         <activity
                 android:name=".remainderList.RemainderListActivity"
                 android:screenOrientation="portrait"/>
+
+        <activity
+                android:name=".remainderDetail.RemainderDetailActivity"
+                android:screenOrientation="portrait"/>
     </application>
 </manifest>

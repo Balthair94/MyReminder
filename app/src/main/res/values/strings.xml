@@ -8,6 +8,8 @@
     <string name="title_provide_user_name">Proporciona tu nombre</string>
 
     <string name="format_hello">Hola %s</string>
+    <string name="format_remainder_id">ID: %d</string>
+    <string name="format_remainder_date">Creado: %s</string>
 
     <string name="label_title">Titulo</string>
     <string name="label_description">Descripción</string>
@@ -23,6 +25,8 @@
     <string name="button_remainders">Recordatorios</string>
     <string name="button_save">Guardar</string>
     <string name="button_cancel">Cancelar</string>
+    <string name="button_delete">Eliminar</string>
+    <string name="button_update">Actualizar</string>
 
     <string name="error_no_name">Proporcione un nombre de usuario</string>
 

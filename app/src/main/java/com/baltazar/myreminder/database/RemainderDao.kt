@@ -29,4 +29,7 @@ interface RemainderDao {
 
     @Query("SELECT * FROM remainder ORDER BY date(schedule_date) DESC")
     fun getRemainders(): Single<List<RemainderEntity>>
+
+    @Query("DELETE FROM remainder WHERE id == :id")
+    fun deleteRemainderById(id: Int): Completable
 }
